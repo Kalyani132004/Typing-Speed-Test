@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Test Record</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eeefed;
+            color: #333b40;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 540px;
+            margin: 55px auto;
+            padding: 20px;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border: 1px solid #d5d9d9;
+            border-radius: 5px;
+            padding: 28px 30px;
+        }
+
+        h1 {
+            font-size: 23px;
+            margin: 0 0 8px;
+            font-weight: 600;
+            color: #344b56;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 17px 0 7px;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px 11px;
+            border: 1px solid #c9cecf;
+            border-radius: 3px;
+            font-size: 14px;
+            background: #fff;
+            color: #333b40;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #627e8b;
+            box-shadow: 0 0 0 2px #e5ebed;
+        }
+
+        .hint {
+            display: block;
+            color: #777f82;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 11px;
+            background: #526e7a;
+            color: white;
+            border: 1px solid #526e7a;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #405965;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 19px;
+            color: #526e7a;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .form-card {
+                padding: 23px 19px;
+            }
+        }
+    </style>
+
+
+    <script>
+        function validateForm() {
+            var student = document.getElementById("student").value.trim();
+            var words = document.getElementById("words").value;
+            var minutes = document.getElementById("minutes").value;
+
+            if (student === "") {
+                alert("Please enter student name.");
+                return false;
+            }
+
+            if (words === "" || Number(words) < 0) {
+                alert("Words typed must be zero or more.");
+                return false;
+            }
+
+            if (minutes === "" || Number(minutes) <= 0) {
+                alert("Minutes must be more than 0.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="page">
+        <div class="form-card">
+
+            <h1>Typing Speed Test Record Entry</h1>
+
+            <form action="result.jsp" method="post" onsubmit="return validateForm()">
+
+                <label for="student">Student Name</label>
+                <input type="text" id="student" name="student" maxlength="40" placeholder="enter student name" required>
+
+                <label for="words">Words Typed</label>
+                <input type="number" id="words" name="words" min="0" step="1" placeholder="enter words typed" required>
+
+                <label for="minutes">Time Taken (Minutes)</label>
+                <input type="number" id="minutes" name="minutes" min="1" step="1" placeholder="enter minutes" required>
+                <span class="hint">Minutes must be greater than zero.</span>
+
+                <button type="submit">Save Record</button>
+            </form>
+
+            <a class="back-link" href="result.jsp">View All Records</a>
+        </div>
+    </div>
+</body>
+</html>
